@@ -19,6 +19,10 @@ const AuthSchema = new mongoose.Schema(
       required: [true, "Password is required"],
       select: false,
     },
+    isPremiumUser: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

@@ -7,17 +7,18 @@ exports.signup = async (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    const userCheck = await User.findOne({ where: { email: email } });
+    const userCheck = await User.findOne({ email: email });
     if (userCheck) {
       res.json({ msg: "email already exist", signup: false });
     } else {
       const hashed = await bcrypt.hash(password, 10);
-      const user = await User.create({
+      const user = new User({
         name: name,
         email: email,
         password: hashed,
       });
       delete user.password;
+      await user.save();
       res.json({ msg: "signup Successful", signup: true, user });
     }
   } catch (error) {
@@ -29,7 +30,7 @@ exports.login = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  const user = await User.findOne({ where: { email: email } });
+  const user = await User.findOne({ email: email });
 
   console.log(user);
   if (user) {
