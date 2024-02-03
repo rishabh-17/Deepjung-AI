@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+/* The code is defining a Mongoose schema for a user profile. */
 
 const profileSchema = new mongoose.Schema({
   user: {
@@ -33,7 +34,7 @@ const profileSchema = new mongoose.Schema({
   },
   posts: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
   ],

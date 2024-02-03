@@ -1,6 +1,8 @@
-const User = require("../db/models/auth");
+const User = require("../db/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+/* The `exports.signup` function is a controller function that handles the logic for user signup. */
 exports.signup = async (req, res, next) => {
   try {
     const name = req.body.name;
@@ -26,6 +28,7 @@ exports.signup = async (req, res, next) => {
   }
 };
 
+/* The `exports.login` function is a controller function that handles the logic for user login. */
 exports.login = async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -49,9 +52,18 @@ exports.login = async (req, res, next) => {
   }
 };
 
+/**
+ * The function `getAccessToken` generates a JSON Web Token (JWT) using the provided user ID, name, and
+ * premium user status.
+ * @param id - The user's ID, which is typically a unique identifier for each user in the system. It
+ * could be a number, string, or any other data type that uniquely identifies the user.
+ * @param name - The name parameter is a string that represents the name of the user.
+ * @param isPremiumUser - A boolean value indicating whether the user is a premium user or not.
+ * @returns a JSON Web Token (JWT) that contains the user's ID, name, and premium user status.
+ */
 function getAccessToken(id, name, isPremiumUser) {
   return jwt.sign(
-    { userId: id, name: name, isPremiumUser: isPremiumUser },
+    { _id: id, name: name, isPremiumUser: isPremiumUser },
     "secretKey"
   );
 }

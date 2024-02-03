@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset margin and padding on the body and html elements */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a background color to the entire page */
+body {
+  background-color: #f9fafe;
+}
+
+/* Ensure the root container takes at least the height of the viewport */
+#root {
+  min-height: 100vh;
+}
+
+/* Optional: Remove any default list styles */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Optional: Remove anchor text decoration */
+a {
+  text-decoration: none;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+@media screen and (min-width: 480px) {
+  .card:nth-child(7n + 1) {
+    grid-column: auto/span 2;
+    grid-row: auto/span 2;
+  }
+}
+
+.prompt::-webkit-scrollbar {
+  width: 5px;
+}
+
+.prompt::-webkit-scrollbar-thumb {
+  background-color: #666e75;
+  border-radius: 5px;
+}

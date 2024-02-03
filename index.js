@@ -17,11 +17,11 @@ const app = express();
 // middlewares
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
-app.use(AuthMiddleware);
+
 // Routes connection
-app.use("/api/v1/post", PostRoutes);
-app.use("/api/v1/dalle", DalleRoutes);
 app.use("/api/v1/auth", UserRoutes);
+app.use("/api/v1/post", AuthMiddleware, PostRoutes);
+app.use("/api/v1/dalle", AuthMiddleware, DalleRoutes);
 
 // Global error handling
 app.use("*", async (req, res) => {
@@ -39,7 +39,7 @@ const startServer = async () => {
       useFindAndModify: false,
       useUnifiedTopology: true,
     });
-    app.listen(8000, () => console.log("Server started on port 8080"));
+    app.listen(8000, () => console.log("Server started on port 8000"));
   } catch (error) {
     console.log(error);
   }

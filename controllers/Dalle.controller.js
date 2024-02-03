@@ -4,6 +4,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+/* The `exports.genImage` function is an asynchronous function that handles the generation of an image
+using the OpenAI API. */
 exports.genImage = async (req, res) => {
   try {
     const { prompt } = req.body;

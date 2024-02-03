@@ -8,4 +8,6 @@ router.get("/", PostController.getAllPost);
 //CREATE A POST
 router.post("/", PostController.createPost);
 
+router.post("/like", PostController.likePost);
+
 module.exports = router;
